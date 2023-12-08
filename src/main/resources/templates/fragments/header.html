@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <title>Header Page</title>
+  </head>
+  <body>
+    <div th:fragment="header">
+	  <h1>Welcome to Quizzard!</h1>
+      <p th:text="'Player: ' + ${user}"></p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,130 @@
+.bn5 {
+    padding: 2em 4em;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.bn5:before {
+    content: "";
+    background: linear-gradient(
+        45deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowingbn5 20s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+@keyframes glowingbn5 {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.bn5:active {
+    color: #000;
+}
+
+.bn5:active:after {
+    background: transparent;
+}
+
+.bn5:hover:before {
+    opacity: 1;
+}
+
+.bn5:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #191919;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+body {
+    font: normal 18px 'Roboto', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background: #fff;
+}
+
+header {
+	background-color: #111;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+header p {
+    margin: 5px 0;
+}
+
+
+.quiz-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.exit-button {
+    padding: 0.8em 1.8em;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background 0.3s ease-in-out;
+    margin-top: 15px;
+} 	
+
+.exit-button:hover {
+    background: #f55951;
+    color: #fff;
+}
+

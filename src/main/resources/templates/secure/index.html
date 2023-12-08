@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <title>Home Page</title>
+    <link href="/css/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header th:insert="~{fragments/header.html :: header}"></header>
+    <div class="select-fields">
+      <h1>Start Quiz</h1>
+      <form method="post" th:action="@{/secure/selectSubject}" th:object="${question}">
+        <b>Subject:</b> 
+        <select th:field="*{subject}">
+          <option th:each="p : ${question.SUBJECTS}" th:value="${p}" th:text="${p}"/>
+        </select>
+        <br>
+        <input type="submit" value="Begin Game!"/>
+      </form>
+    <div sec:authorize="hasRole('USER')"> <!-- If user has USER role, give access to quiz editing -->
+      <p><b>Question Editor</b></p>
+      <form method="post" th:action="@{/secure/quizList}" th:object="${question}">
+	    <b>Subject:</b> 
+        <select th:field="*{subject}">
+          <option th:each="q : ${question.SUBJECTS}" th:value="${q}" th:text="${q}"/>
+        </select>
+        <br>
+        <input type="submit" value="Edit Quizzes">
+      </form>
+    </div>
+    </div>
+    <div class="div-table">
+    <h1>High Scores</h1>
+    <table th:if="${scoreList != null and not scoreList.isEmpty()}">
+      <tr>
+        <th>Username</th>
+        <th>Score</th>
+        <th>Subject</th>
+      </tr>
+      <tr th:each="aScore:${scoreList}">
+        <td th:text="${aScore.username}">Player</td>
+        <td th:text="${aScore.score}">Score</td>
+        <td th:text="${aScore.subject}">Subject</td>
+      </tr>
+    </table>
+    </div>
+    <form method="post" th:action="@{/logout}">
+      <input type="submit" value="Logout" />
+    </form>
+    <footer th:insert="~{fragments/footer.html :: footer}"></footer>
+  </body>
+</html>

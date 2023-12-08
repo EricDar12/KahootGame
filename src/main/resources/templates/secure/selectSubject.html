@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Question Form</title>
+    <link href="/css/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header th:insert="~{fragments/header.html :: header}"></header>
+    <h1> High Scores for <span th:text="${subject}"></span></h1>
+    <table th:if="${scoreList != null and not scoreList.isEmpty()}">
+      <tr>
+        <th>Username</th>
+        <th>Score</th>
+        <th>Subject</th>
+      </tr>
+      <tr th:each="aScore:${scoreList}">
+        <td th:text="${aScore.username}">Player</td>
+        <td th:text="${aScore.score}">Score</td>
+        <td th:text="${aScore.subject}">Subject</td>
+      </tr>
+    </table>
+    <form method="post" th:action="@{/secure/nextQuestion}">
+      <input type="submit" value="Begin Quiz">
+    </form>
+    <form method="get" th:action="@{/secure}">
+      <input type="submit" value="Home" />
+    </form>
+    <footer th:insert="~{fragments/footer.html :: footer}"></footer>
+  </body>
+</html>

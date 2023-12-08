@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Questions</title>
+    <link href="/css/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header th:insert="~{fragments/unsecureHeader.html :: unsecureHeader}"></header>
+    <table th:if="${questionList != null and not questionList.isEmpty()}">
+      <tr>
+        <th>Question</th>
+        <th>Subject</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+      <tr th:each="ques:${questionList}">
+        <td th:text="${ques.question_text}">Question</td>
+        <td th:text="${ques.subject}">Subject</td>
+        <td><a th:href="@{/secure/editQuestionById/}+${ques.id}">Edit</a></td>
+        <td><a th:href="@{/secure/deleteQuestionById/}+${ques.id}">Delete</a></td>
+      </tr>
+    </table>
+    <div class="add-question-table">
+      <form method="post" action="#" th:action="@{/secure/addQuestion}" th:object="${question}">
+        <input type="hidden" name="id" th:field="*{id}" />
+        Question: <input type="text" th:field="*{question_text}" required /><br>
+        A: <input type="text" th:field="*{option_a}" required /><br>
+        B: <input type="text" th:field="*{option_b}" required /><br>
+        C: <input type="text" th:field="*{option_c}" required /><br>
+        D: <input type="text" th:field="*{option_d}" required /><br>
+        Correct: 
+        <select th:field="*{correct_option}">
+          <option th:each="p : ${question.OPTIONS}" th:value="${p}" th:text="${p}"/>
+        </select>
+        <br>
+        Subject: 
+        <select th:field="*{subject}">
+          <option th:each="q : ${question.SUBJECTS}" th:value="${q}" th:text="${q}"/>
+        </select>
+        <br>
+        <input type="submit" value="Add Question!" />
+      </form>
+      <form method="get" th:action="@{/secure}">
+        <input type="submit" value="Home" />
+      </form>
+    </div>
+    <footer th:insert="~{fragments/footer.html :: footer}"></footer>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Question Form</title>
+    <link href="/css/scoreStyles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header th:insert="~{fragments/unsecureHeader.html :: unsecureHeader}"></header>
+    <div class="final-score-container">
+      <div class="final-score">
+        <h1 class="final-score-h1"><u>Final Score</u></h1>
+        <h1 th:text="${user}"></h1>
+        <h2 th:text="${score}"></h2>
+        <p th:text="${message}"></p>
+        <form method="get" th:action="@{/secure}">
+          <input type="submit" value="Home">
+        </form>
+      </div>
+    </div>
+    <footer th:insert="~{fragments/footer.html :: footer}"></footer>
+  </body>
+</html>

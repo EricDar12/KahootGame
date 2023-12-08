@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Question Form</title>
+    <link href="/css/quizStyles.css" rel="stylesheet" />
+  </head>
+  <body>
+      <div class="quiz=container">
+      <header th:insert="~{fragments/quizHeader.html :: header}"></header>
+      <form method="post" th:action="@{/secure/nextQuestion}">
+        <p th:text="'Question: ' + ${question.question_text}"></p>
+        <p th:text="'Correct Answer ' + ${question.correct_option} + ': ' + ${correctAnswer}"></p>
+        <p th:text="${evaluation} + ' + ' + ${points} + ' Points!'"></p>
+        <input type="submit" value="Next Question" class="exit-button">
+    </form>
+    </div>
+    <form method="post" th:action="@{/secure/exitQuiz}">
+        <input type="submit" value="Exit Quiz" class="exit-button">
+    </form>
+  </body>
+</html>

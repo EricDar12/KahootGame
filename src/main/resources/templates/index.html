@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <title>Landing Page</title>
+    <link href="/css/loginStyles.css" rel="stylesheet" />
+  </head>
+  <header th:insert="~{fragments/unsecureHeader.html :: unsecureHeader}"></header>
+  <body>
+    <div class="select-fields">
+      <h1>Welcome to Quizzard</h1>
+      <p>Unlock the world of knowledge and fun! Log in or sign up to explore a variety of quizzes and challenge yourself.</p>
+      <p>Already a member? Head to the secured pages by clicking</p>
+      <form method="get" th:action="@{/secure}">
+        <input type="submit" value="Home" />
+      </form>
+    </div>
+    <footer th:insert="~{fragments/footer.html :: footer}"></footer>
+  </body>
+</html>
